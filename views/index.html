@@ -40,7 +40,6 @@
         fileInput.addEventListener("change", evt => {
           const file = evt.target.files[0];
           formData.append("upfile", file);
-          console.log(formData.get("upfile"));
         });
 
         form.addEventListener("submit", async evt => {
@@ -51,7 +50,6 @@
               body: formData
             });
             const data = await res.json();
-            console.log({data})
           } catch (error) {
             console.error(error);
           }
