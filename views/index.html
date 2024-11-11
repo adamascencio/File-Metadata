@@ -30,5 +30,32 @@
           <a href="http://www.freecodecamp.com">freeCodeCamp</a>
         </p>
       </div>
+      <script>
+        const fileInput = document.getElementById("inputfield");
+        const form = document.querySelector("form");
+        const method = form.method;
+        const action = form.action;
+        const formData = new FormData();
+
+        fileInput.addEventListener("change", evt => {
+          const file = evt.target.files[0];
+          formData.append("upfile", file);
+          console.log(formData.get("upfile"));
+        });
+
+        form.addEventListener("submit", async evt => {
+          evt.preventDefault();
+          try {
+            const res = await fetch(action, {
+              method,
+              body: formData
+            });
+            const data = await res.json();
+            console.log({data})
+          } catch (error) {
+            console.error(error);
+          }
+        });
+      </script>
    </body>
 </html>
